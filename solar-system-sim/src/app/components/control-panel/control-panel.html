@@ -1,1 +1,32 @@
-<p>control-panel works!</p>
+<div class="panel">
+  <h3>Simulation</h3>
+  <div class="row">
+    <button (click)="toggleRun()">{{ running ? '⏸ Pause' : '▶ Play' }}</button>
+    <button (click)="reset()">Reset</button>
+  </div>
+
+  <div class="row">
+    <label>Speed</label>
+    <button [class.sel]="speed===0.25" (click)="setSpeed(0.25)">x0.25</button>
+    <button [class.sel]="speed===0.5" (click)="setSpeed(0.5)">x0.5</button>
+    <button [class.sel]="speed===1" (click)="setSpeed(1)">x1</button>
+    <button [class.sel]="speed===2" (click)="setSpeed(2)">x2</button>
+    <button [class.sel]="speed===4" (click)="setSpeed(4)">x4</button>
+  </div>
+
+  <h3>Physics</h3>
+  <label>G:
+    <input type="range" min="0.05" max="2" step="0.05" [(ngModel)]="G" (input)="onGChange()">
+    <span>{{ G | number:'1.2-2' }}</span>
+  </label>
+
+  <label>dt:
+    <input type="range" min="0.005" max="0.05" step="0.005" [(ngModel)]="dt" (input)="onDtChange()">
+    <span>{{ dt | number:'1.3-3' }}</span>
+  </label>
+
+  <label>ε (softening):
+    <input type="range" min="0" max="10" step="0.5" [(ngModel)]="eps" (input)="onEpsChange()">
+    <span>{{ eps | number:'1.1-1' }} px</span>
+  </label>
+</div>
